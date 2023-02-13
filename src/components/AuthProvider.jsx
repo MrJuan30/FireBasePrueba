@@ -1,7 +1,7 @@
 import { GoogleAuthProvider, onAuthStateChanged, signInWithPopup } from 'firebase/auth'
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { auth, userExist } from '../firebase/Firebase'
+import { auth, userExist, registerNewUser } from '../firebase/Firebase'
 
 
 
@@ -14,6 +14,13 @@ export default function AuthProvider({ children, onUserLoggedIn, onUserNotLogged
                 if (isRegistered) {
                     onUserLoggedIn(user)
                 } else {
+                    await registerNewUser({
+                        uid: user.uid,
+                        displayName: user.displayName,
+                        profilePicture: '',
+                        username: '',
+                        processCompleted: false,
+                    })
                     onUserNotRegistered(user)
                 }
 

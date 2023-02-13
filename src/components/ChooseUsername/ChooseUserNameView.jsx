@@ -34,16 +34,20 @@ const ChooseUserNameView = () => {
             if (exists) {
                 setState(5)
             } else {
+
                 const tmp = { ...CurrentUser }
-                tmp.processCompleted = true
+                tmp.username = Username;
+                tmp.processCompleted = true;
+                await updatedUser(tmp);
             }
         }
     }
 
-    if (State === 3) {
+    if (State === 3 || State === 5) {
         return <div>
             <h1>Bienvenido {CurrentUser.displayName}</h1>
             <p>para finalizar el proceso elige un nombre de usuario</p>
+            {state === 5 ? <p>El nombre de usuario ya existe, porfavor coloca otro</p> : <></>}
             <div>
                 <input type="text" onChange={handleInputUserName}></input>
             </div>

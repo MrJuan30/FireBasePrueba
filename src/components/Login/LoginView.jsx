@@ -76,6 +76,14 @@ const LoginView = () => {
         )
     }
 
+    if (State === 5) {
+        return (
+            <div>
+                <button onClick={HandleClick}>LOGIN WITH GOOGLE</button>
+            </div>
+        )
+    }
+
 
 
     return (<AuthProvider onUserLoggedIn={handleUserLoggedIn}

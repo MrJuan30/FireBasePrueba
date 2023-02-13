@@ -54,3 +54,21 @@ export async function existUsername(username) {
 
   return users.length > 0 ? users[0].uid : null;
 }
+
+export async function registerNewUser(user) {
+  try {
+    const collectionRef = collection(db, "users");
+    const docRef = doc(collectionRef, user.uid);
+    await setDoc(docRef, user);
+  } catch (error) {}
+}
+
+export async function updatedUser(user) {
+  try {
+    const collectionRef = collection(db, "users");
+    const docRef = doc(collectionRef, user.id);
+    await setDoc(docRef, user);
+  } catch (error) {
+    console.log(error);
+  }
+}
